@@ -8,6 +8,8 @@ html
     meta(name='csrf-token', content=_csrf)
     title #{title} - Hackathon Starter
     link(rel='stylesheet', href='/css/main.css')
+    script(src='/js/lib/jquery-2.2.0.min.js')
+    script(src='/js/lib/bootstrap.min.js')
     script.
       geo={lat:#{geo.ll[0]},lng:#{geo.ll[1]}};
       console.log('ip based location:');
@@ -23,8 +25,6 @@ html
 
     include partials/footer
 
-    script(src='/js/lib/jquery-2.2.0.min.js')
-    script(src='/js/lib/bootstrap.min.js')
 
     // Google Analytics: change UA-XXXXX-X to be your site's ID
     script.

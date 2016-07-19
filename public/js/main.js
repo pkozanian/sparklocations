@@ -1,7 +1,12 @@
 console.log('in main.js');
 
+function log(msg){
+  console.log('log : '+msg);
+  $('#log').text(msg);
+}
+
 function initMap() {
-  console.log('in initMap');
+    log('inside initMap');
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: geo.lat, lng: geo.lng},
     zoom: 10
@@ -28,15 +33,18 @@ function initMap() {
         lng: position.coords.longitude
       };
       infoWindow.setPosition(pos);
+      log('We found your location');
       infoWindow.setContent('We found your location.');
       currentLocationMarker.setCenter(pos);
       map.setCenter(pos);
       map.setZoom(18);
     }, function() {
+      log('Need to accept geolocation prompt');
       handleLocationError(true, infoWindow, map.getCenter());
       //handleLocationError(true, currentLocationMarker, map.getCenter());
     });
   } else {
+    log('Browser doesn\'t support geolocation')
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
     //handleLocationError(false, currentLocationMarker, map.getCenter());

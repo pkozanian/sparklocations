@@ -1,6 +1,6 @@
 const geoip = require('geoip-lite');
 
-var defaultGeo={ range: [ 1119431488, 1119431551 ],
+var defaultGeo={ range: [ 0, 0 ],
     country: 'CG',
     region: '00',
     city: 'Nowhere',
@@ -13,7 +13,7 @@ var defaultGeo={ range: [ 1119431488, 1119431551 ],
  */
 exports.index = (req, res) => {
   // Get ipv4 address
-  var IpFromRequest=req.connection.remoteAddress;
+  var IpFromRequest=req.header('x-forwarded-for')?req.header('x-forwarded-for'):req.connection.remoteAddress;
   var indexOfColon = IpFromRequest.lastIndexOf(':');
   var ip = IpFromRequest.substring(indexOfColon+1,IpFromRequest.length);
   console.log('IPV4: '+ip);

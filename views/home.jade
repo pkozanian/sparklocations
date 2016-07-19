@@ -1,13 +1,14 @@
 extends layout
 
 block content
-  h1 Spark Locations
-  p.lead Create and join Spark rooms based on your location.
-  hr
-  #mapcontainer 
-    #map(style='height:350px')
-    #capture
-  script.
-    geo={lat:#{geo.ll[0]},lng:#{geo.ll[1]}};
-    console.log(geo);
+  .row
+    .col-md-12
+      h1 Spark Locations
+      p.lead Create and join Spark rooms based on your location.
+      hr
+  .row
+    .col-md-12
+      #mapcontainer
+        #map(style=" height: 350px")
+        #capture
   script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAzgfYyackskauSa6pKXS-xOj41pE4RQck&callback=initMap', async='true', defer='true')

@@ -26,7 +26,7 @@ function initMap() {
     //infoWindow.open(map,currentLocationMarker);
   });
   // Try HTML5 geolocation.
-  if (navigator.geolocation) {
+  if (navigator.geolocation && navigator.geolocation.getCurrentPosition) {
     navigator.geolocation.getCurrentPosition(function(position) {
       var pos = {
         lat: position.coords.latitude,

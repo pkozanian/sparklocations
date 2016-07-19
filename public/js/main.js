@@ -5,6 +5,10 @@ function log(msg){
   $('#log').text(msg);
 }
 
+function geolocFail(msg){
+  log(msg);
+}
+
 function initMap() {
     log('inside initMap');
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -29,8 +33,12 @@ function initMap() {
   // Try HTML5 geolocation.
   if (navigator.geolocation && navigator.geolocation.getCurrentPosition) {
     log('geo location ok, trying to get current pos');
-  try {
+    
+    //start timer, so we can catch if user doesn't accept within 10s
+    var location_timeout = setTimeout("geolocFail('user did not accept on time')", 10000);
+
     navigator.geolocation.getCurrentPosition(function(position) {
+      clearTimeout(location_timeout);
       log('got a pos');
       var pos = {
         lat: position.coords.latitude,
@@ -43,16 +51,13 @@ function initMap() {
       map.setCenter(pos);
       map.setZoom(18);
     }, function() {
-      log('Need to accept geolocation prompt');
+      clearTimeout(location_timeout);
+      geolocFail('Need to accept geolocation prompt');
       handleLocationError(true, infoWindow, map.getCenter());
       //handleLocationError(true, currentLocationMarker, map.getCenter());
     });
-  } catch(err){
-      console.log(err);
-      log(err.message);
-  }
   } else {
-    log('Browser doesn\'t support geolocation')
+    geolocFail('Browser doesn\'t support geolocation');
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
     //handleLocationError(false, currentLocationMarker, map.getCenter());

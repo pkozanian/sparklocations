@@ -25,9 +25,12 @@ function initMap() {
     infoWindow.setPosition(ev.latLng);
     //infoWindow.open(map,currentLocationMarker);
   });
+  log('Trying HTML5 geolocation');
   // Try HTML5 geolocation.
   if (navigator.geolocation && navigator.geolocation.getCurrentPosition) {
+    log('geo location ok, trying to get current pos');
     navigator.geolocation.getCurrentPosition(function(position) {
+      log('got a pos');
       var pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude

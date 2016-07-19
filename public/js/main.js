@@ -27,6 +27,7 @@ function initMap() {
   });
   log('Trying HTML5 geolocation');
   // Try HTML5 geolocation.
+  try {
   if (navigator.geolocation && navigator.geolocation.getCurrentPosition) {
     log('geo location ok, trying to get current pos');
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -51,6 +52,10 @@ function initMap() {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
     //handleLocationError(false, currentLocationMarker, map.getCenter());
+  }
+  } catch(err){
+      console.log(err);
+      log(err.message);
   }
 }
  function handleLocationError(browserHasGeolocation, currentLocationMarker, pos) {

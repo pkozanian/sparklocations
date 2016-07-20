@@ -103,7 +103,7 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
 app.get('/', homeController.index);
 app.get('/contact', contactController.getContact);
 app.post('/contact', contactController.postContact);
-app.get('/.well-known/acme-challenge/mpEIasHvAganFQe4-Luz-AMDxyXZGL-b-kh3pqBRqqs', function (req,res){res.set('Content-type','text/plain');res.send('mpEIasHvAganFQe4-Luz-AMDxyXZGL-b-kh3pqBRqqs.d47e89FxUQJxoaie1UY4xebrJP5x80QGZU2ru9oyM_c')});
+app.get('/.well-known/acme-challenge/xcXcy4C-J08snSCAfGksVRLch_yXLqoBIVBkJ-abU1Y', function (req,res){res.set('Content-type','text/plain');res.send('xcXcy4C-J08snSCAfGksVRLch_yXLqoBIVBkJ-abU1Y.d47e89FxUQJxoaie1UY4xebrJP5x80QGZU2ru9oyM_c')});
 
 
 /**

@@ -10,7 +10,7 @@ function geolocFail(msg){
 }
 
 function initMap() {
-    log('inside initMap');
+    alert('inside initMap');
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: geo.lat, lng: geo.lng},
     zoom: 10
